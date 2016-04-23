@@ -18,3 +18,11 @@ Usage: ./build.sh cfg_file [-bhiknw]
 -k : skip buildkernel step
 -b : skip buildworld and buildkernel step
 ```
+
+## Converting disk image to VirtualBox VDI
+
+Useful for testing
+
+```
+VBoxManage convertdd nanobsd.full nanobsd.vdi --format VDI
+```
