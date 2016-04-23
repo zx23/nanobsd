@@ -11,8 +11,8 @@ Vagrant.configure(2) do |config|
 
     config.vm.provider "virtualbox" do |vb|
         vb.customize ['modifyvm', :id, '--memory', '1024']
-        vb.customize ['modifyvm', :id, '--cpus', '3']
-        vb.customize ['modifyvm', :id, '--ioapic', 'on']
+        vb.customize ['modifyvm', :id, '--cpus', '1']
+        #vb.customize ['modifyvm', :id, '--ioapic', 'on']
     end
 
 
@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
 
     config.vm.provider vmware_provider do |v|
         v.vmx['memsize']  = '1024'
-        v.vmx['numvcpus'] = '3'
+        v.vmx['numvcpus'] = '1'
     end
 
 end
