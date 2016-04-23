@@ -15,4 +15,4 @@ fi
 CFG="${1}"
 shift;
 
-sh /usr/src/tools/tools/nanobsd/nanobsd.sh $* -c ${CFG}
+vagrant ssh -c "cd /vagrant && sudo sh /usr/src/tools/tools/nanobsd/nanobsd.sh $* -c ${CFG}"
