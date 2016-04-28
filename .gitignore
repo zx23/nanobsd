@@ -1,5 +1,6 @@
 nanobsd.full
 nanobsd.image
+nanobsd.image.gz
 *.vdi
 .vagrant
 *.swp

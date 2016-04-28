@@ -29,11 +29,12 @@ dd if=nanobsd.full of=/dev/da0 bs=64k
 
 ## Update
 
-Change update partition as required (updatep1/updatep2)
+As root from the alix box.  Change update partition as required
+(updatep1/updatep2)
 
 
 ```
-ssh -t myhost cat nanobsd.image.gz | zcat | sudo sh /root/updatep1
+ssh myhost cat nanobsd.image.gz | zcat | sh updatep1
 ```
 
 
