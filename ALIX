@@ -74,6 +74,7 @@ options 	ATA_STATIC_ID		# Static device numbering
 
 # ATA/SCSI peripherals
 device		scbus			# SCSI bus (required for ATA/SCSI)
+device          pass                    # Passthrough device (direct ATA/SCSI access)
 device		da			# Direct Access (disks)
 
 # Serial (COM) ports
