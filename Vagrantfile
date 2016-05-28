@@ -4,7 +4,7 @@
 Vagrant.configure(2) do |config|
 
     config.vm.box = 'zx23/freebsd-10.3-i386'
-    config.vm.box_url = 'http://pkg.zx23.net/pub/FreeBSD/vagrant/metadata/freebsd-10-3-amd64.json'
+    config.vm.box_url = 'http://pkg.zx23.net/pub/FreeBSD/vagrant/metadata/freebsd-10-3-i386.json'
     config.vm.hostname = 'alix-build'
 
     config.vm.network :private_network, ip: '10.44.44.10'
