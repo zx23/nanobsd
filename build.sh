@@ -2,6 +2,8 @@
 
 set -e
 
+RELEASE='11.0-RELEASE'
+
 if [ -z "${1}" -o \! -f "${1}" ]; then
   echo "Usage: $0 cfg_file [-v] [-bhiknw]"
   echo "-i : skip image build"
@@ -21,6 +23,13 @@ if [ "${1}" = '-v' ]; then
     shift
 else
     VAGRANT_IMAGE=false
+fi
+
+if `vagrant ssh -c 'test ! -d /usr/src/tools'`; then
+
+    echo "# Installing src for $RELEASE"
+    vagrant ssh -c "fetch http://ftp.freebsd.org/pub/FreeBSD/releases/i386/${RELEASE}/src.txz && sudo tar -C / -xzvf src.txz"
+
 fi
 
 vagrant ssh -c "cd /vagrant && sudo VAGRANT_IMAGE=${VAGRANT_IMAGE} sh /usr/src/tools/tools/nanobsd/nanobsd.sh $* -c ${CFG}"

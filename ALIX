@@ -14,6 +14,7 @@ options 	SCHED_ULE		# ULE scheduler
 options 	PREEMPTION		# Enable kernel thread preemption
 options 	INET			# InterNETworking
 options 	INET6			# IPv6 communications protocols
+#options         IPSEC                   # IP (v4/v6) security
 options 	TCP_OFFLOAD		# TCP offload
 options 	SCTP			# Stream Control Transmission Protocol
 options 	FFS			# Berkeley Fast Filesystem
@@ -38,6 +39,8 @@ options 	COMPAT_FREEBSD4		# Compatible with FreeBSD4
 options 	COMPAT_FREEBSD5		# Compatible with FreeBSD5
 options 	COMPAT_FREEBSD6		# Compatible with FreeBSD6
 options 	COMPAT_FREEBSD7		# Compatible with FreeBSD7
+options         COMPAT_FREEBSD9         # Compatible with FreeBSD9
+options         COMPAT_FREEBSD10        # Compatible with FreeBSD10
 options 	SCSI_DELAY=5000		# Delay (in ms) before probing SCSI
 #options 	KTRACE			# ktrace(1) support
 #options 	STACK			# stack(9) support
@@ -51,7 +54,6 @@ options 	PRINTF_BUFR_SIZE=128	# Prevent printf output being interspersed.
 options 	AUDIT			# Security event auditing
 #options 	CAPABILITY_MODE		# Capsicum capability mode
 #options 	CAPABILITIES		# Capsicum capabilities
-options 	PROCDESC		# Support for process descriptors
 #options 	MAC			# TrustedBSD MAC Framework
 options 	KDTRACE_HOOKS		# Kernel DTrace hooks
 #options 	DDB_CTF			# Kernel ELF linker loads CTF data
@@ -124,7 +126,6 @@ device		vlan			# 802.1Q VLAN support
 device		tun			# Packet tunnel.
 device		md			# Memory "disks"
 device		gif			# IPv6 and IPv4 tunneling
-device		faith			# IPv6-to-IPv4 relaying (translation)
 device		firmware		# firmware assist module
 
 # The `bpf' device enables the Berkeley Packet Filter.
