@@ -2,8 +2,6 @@
 
 set -e
 
-RELEASE='11.0-RELEASE'
-
 if [ -z "${1}" -o \! -f "${1}" ]; then
   echo "Usage: $0 cfg_file [-v] [-bhiknw]"
   echo "-i : skip image build"
@@ -25,13 +23,6 @@ else
     VAGRANT_IMAGE=false
 fi
 
-if `vagrant ssh -c 'test ! -d /usr/src/tools'`; then
-
-    echo "# Installing src for $RELEASE"
-    vagrant ssh -c "fetch http://ftp.freebsd.org/pub/FreeBSD/releases/i386/${RELEASE}/src.txz && sudo tar -C / -xzvf src.txz"
-
-fi
-
 vagrant ssh -c "cd /vagrant && sudo VAGRANT_IMAGE=${VAGRANT_IMAGE} sh /usr/src/tools/tools/nanobsd/nanobsd.sh $* -c ${CFG}"
 
 echo "## Compressing image"
@@ -46,6 +37,7 @@ if [ "${VAGRANT_IMAGE}" = true ] ; then
     VBoxManage createvm --name alixbasebox --register
     VBoxManage modifyvm alixbasebox --ostype FreeBSD --memory 256 \
         --nic1 nat --nictype1 82540EM --nic2 intnet --nictype2 82540EM --nic3 intnet --nictype3 82540EM \
+        --cableconnected1 on --cableconnected2 on --cableconnected3 on \
         --uart1 0x3F8 4 --uartmode1 disconnected
     VBoxManage storagectl alixbasebox --name IDE --add ide --controller PIIX4
     VBoxManage storageattach alixbasebox --storagectl IDE --port 0 --device 0 --type hdd --medium nanobsd.vdi

@@ -3,14 +3,18 @@
 
 Vagrant.configure(2) do |config|
 
-    config.vm.box = 'zx23/freebsd-11.0-i386'
-    config.vm.box_url = 'http://pkg.zx23.net/pub/FreeBSD/vagrant/metadata/freebsd-11-0-i386.json'
-    config.vm.hostname = 'alix-build'
+    config.vm.box = 'freebsd/FreeBSD-11.0-STABLE'
+    config.vm.hostname = 'nanobsd-build'
     config.ssh.insert_key = false
+    # Set shell to sh to avoid #5888 with tcsh on FreeBSD
+    config.ssh.shell = "sh"
 
     config.vm.network :private_network, ip: '10.44.44.10'
     config.vm.synced_folder '.', '/vagrant', type: 'nfs'
     #config.vm.synced_folder ".", "/vagrant", type: "rsync", rsync__exclude: ".git"
+
+    # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=201904
+    config.vm.base_mac = "080027D14C66"
 
     config.vm.provider "virtualbox" do |vb|
         vb.customize ['modifyvm', :id, '--memory', '1024']
@@ -27,7 +31,7 @@ Vagrant.configure(2) do |config|
 
     config.vm.provider vmware_provider do |v|
         v.vmx['memsize']  = '1024'
-        v.vmx['numvcpus'] = '3'
+        v.vmx['numvcpus'] = '2'
     end
 
 end
