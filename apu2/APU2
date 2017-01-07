@@ -89,6 +89,9 @@ device		scbus			# SCSI bus (required for ATA/SCSI)
 device		da			# Direct Access (disks)
 device		pass			# Passthrough device (direct ATA/SCSI access)
 
+# Serial (COM) ports
+device          uart                    # Generic UART driver
+
 # PCI Ethernet NICs.
 device		igb			# Intel PRO/1000 PCIE Server Gigabit Family
 
