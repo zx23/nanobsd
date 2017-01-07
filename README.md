@@ -1,4 +1,4 @@
-# ZX NanoBSD
+# ZX23 NanoBSD
 
 NanoBSD Vagrant build environment and config for various embedded systems.
 
@@ -37,6 +37,15 @@ Write full image directly to CF:
 ```
 dd if=nanobsd.full of=/dev/da0 bs=64k
 ```
+
+## Access
+
+By default remote root logins are allowed and the password is set to the board name.
+
+Make sure to CHANGE THIS!
+
+The first Ethernet interface is set to get address from DHCP.  On Alix it's the
+interface next to power plug, on APU2 it's next to the serial port.
 
 ## Update
 
