@@ -1,6 +1,6 @@
 # ZX NanoBSD
 
-NanoBSD Vagrant build and config for various embedded systems.
+NanoBSD Vagrant build environment and config for various embedded systems.
 
 Supported systems:
  * PCEngines ALIX
