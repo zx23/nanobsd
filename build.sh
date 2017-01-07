@@ -23,6 +23,12 @@ else
     VAGRANT_IMAGE=false
 fi
 
+if `vagrant ssh -c 'test ! -d /usr/src/tools'`; then
+    echo "# Installing src"
+    vagrant ssh -c 'sudo pkg install -y ca_root_nss'
+    vagrant ssh -c 'sudo svnlite checkout https://svn.freebsd.org/base/stable/11 /usr/src/'
+fi
+
 vagrant ssh -c "cd /vagrant && sudo VAGRANT_IMAGE=${VAGRANT_IMAGE} sh /usr/src/tools/tools/nanobsd/nanobsd.sh $* -c ${CFG}"
 
 echo "## Compressing image"
