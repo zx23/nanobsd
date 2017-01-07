@@ -5,6 +5,7 @@ Vagrant.configure(2) do |config|
 
     config.vm.box = 'freebsd/FreeBSD-11.0-STABLE'
     config.vm.hostname = 'nanobsd-build'
+    config.vm.guest = :freebsd
     config.ssh.insert_key = false
     # Set shell to sh to avoid #5888 with tcsh on FreeBSD
     config.ssh.shell = "sh"
@@ -21,7 +22,6 @@ Vagrant.configure(2) do |config|
         vb.customize ['modifyvm', :id, '--cpus', '3']
         vb.customize ['modifyvm', :id, '--ioapic', 'on']
     end
-
 
     if (/darwin/ =~ RUBY_PLATFORM).nil?
         vmware_provider = 'vmware_fusion'
